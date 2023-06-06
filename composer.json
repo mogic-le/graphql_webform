@@ -1,0 +1,15 @@
+{
+    "name": "drupal/graphql_webform",
+    "description": "Provides GraphQL integration with the Webform module.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://drupal.org/project/graphql_webform",
+    "support": {
+        "issues": "https://drupal.org/project/issues/graphql_webform",
+        "source": "https://git.drupalcode.org/project/graphql_webform"
+    },
+    "require": {
+        "drupal/graphql": "^3.0",
+        "drupal/webform": "^6.0"
+    }
+}
