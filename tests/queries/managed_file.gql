@@ -1,0 +1,32 @@
+fragment webformElementValidationMultiple on WebformElementValidationMultiple {
+  limit
+}
+
+fragment webformElementManagedFile on WebformElementManagedFile {
+  __typename
+  id
+  title
+  description
+  maxFilesize
+  fileExtensions
+  multiple {
+    ...webformElementValidationMultiple
+  }
+}
+
+fragment webformElement on WebformElement {
+  ...webformElementManagedFile
+}
+
+fragment webform on Webform {
+  title
+  elements {
+    ...webformElement
+  }
+}
+
+query webform($webform_id: String!) {
+  form: webformById(webform_id: $webform_id) {
+    ...webform
+  }
+}

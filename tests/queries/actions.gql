@@ -1,0 +1,21 @@
+fragment webformElementActions on WebformElementActions {
+  __typename
+  submitLabel
+}
+
+fragment webformElement on WebformElement {
+  ...webformElementActions
+}
+
+fragment webform on Webform {
+  title
+  elements {
+    ...webformElement
+  }
+}
+
+query webform($webform_id: String!) {
+  form: webformById(webform_id: $webform_id) {
+    ...webform
+  }
+}

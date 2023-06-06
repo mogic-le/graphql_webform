@@ -1,0 +1,22 @@
+fragment webformElementMarkup on WebformElementMarkup {
+  __typename
+  id
+  markup
+}
+
+fragment webformElement on WebformElement {
+  ...webformElementMarkup
+}
+
+fragment webform on Webform {
+  title
+  elements {
+    ...webformElement
+  }
+}
+
+query webform($webform_id: String!) {
+  form: webformById(webform_id: $webform_id) {
+    ...webform
+  }
+}

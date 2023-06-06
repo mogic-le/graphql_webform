@@ -1,0 +1,32 @@
+fragment webformElementOption on WebformElementOption {
+  __typename
+  title
+  value
+}
+
+fragment webformElementSelect on WebformElementSelect {
+  __typename
+  id
+  title
+  description
+  options {
+    ...webformElementOption
+  }
+}
+
+fragment webformElement on WebformElement {
+  ...webformElementSelect
+}
+
+fragment webform on Webform {
+  title
+  elements {
+    ...webformElement
+  }
+}
+
+query webform($webform_id: String!) {
+  form: webformById(webform_id: $webform_id) {
+    ...webform
+  }
+}
