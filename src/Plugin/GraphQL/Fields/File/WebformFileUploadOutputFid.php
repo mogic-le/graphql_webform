@@ -15,7 +15,7 @@ use GraphQL\Type\Definition\ResolveInfo;
  *   parents = {"WebformFileUploadOutput"},
  *   id = "webform_file_upload_fid",
  *   name = "fid",
- *   type = "Integer",
+ *   type = "Int",
  * )
  */
 class WebformFileUploadOutputFid extends FieldPluginBase {

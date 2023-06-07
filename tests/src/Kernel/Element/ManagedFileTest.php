@@ -17,7 +17,6 @@ class ManagedFileTest extends GraphQLWebformKernelTestBase {
    * Tests managed files.
    */
   public function testManagedFile(): void {
-    $this->markTestSkipped();
     $query = $this->getQueryFromFile('managed_file.gql');
     $this->assertResults($query, ['webform_id' => 'graphql_webform_test_form'], [
       'form' => [
@@ -29,7 +28,7 @@ class ManagedFileTest extends GraphQLWebformKernelTestBase {
             'title' => 'File upload',
             'description' => 'Description',
             'maxFilesize' => '2',
-            'fileExtensions' => 'gif jpg png',
+            'fileExtensions' => 'gif jpg png txt',
             'multiple' => [
               'limit' => '0',
             ],

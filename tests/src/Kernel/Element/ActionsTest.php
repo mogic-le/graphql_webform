@@ -22,7 +22,7 @@ class ActionsTest extends GraphQLWebformKernelTestBase {
       'form' => [
         'title' => 'GraphQL Webform test form',
         'elements' => [
-          9 => [
+          10 => [
             '__typename' => 'WebformElementActions',
             'submitLabel' => 'Set sail for adventure',
           ],

@@ -1,0 +1,7 @@
+mutation createFile($file: Upload!, $webform_id: String!, $webform_element_id: String!){
+  webformFileUpload(file: $file, webform_id: $webform_id, webform_element_id: $webform_element_id) {
+    ... on WebformFileUploadOutput {
+      fid
+    }
+  }
+}

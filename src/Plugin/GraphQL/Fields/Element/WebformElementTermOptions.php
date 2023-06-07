@@ -17,7 +17,7 @@ use GraphQL\Type\Definition\ResolveInfo;
  *   nullable = true,
  *   multi = false,
  *   arguments = {
- *     "depth" = "Integer",
+ *     "depth" = "Int",
  *   },
  * )
  */

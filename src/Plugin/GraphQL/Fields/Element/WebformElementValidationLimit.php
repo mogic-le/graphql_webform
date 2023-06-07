@@ -14,7 +14,7 @@ use GraphQL\Type\Definition\ResolveInfo;
  *   parents = {"WebformElementValidationMultiple"},
  *   id = "webform_element_validation_limit",
  *   name = "limit",
- *   type = "Integer",
+ *   type = "Int",
  * )
  */
 class WebformElementValidationLimit extends FieldPluginBase {

@@ -1,0 +1,21 @@
+fragment webformElementTermSelect on WebformElementTermSelect {
+  __typename
+  id
+  title
+  description
+  multiple {
+    limit
+  }
+  termOptions(depth: $depth) {
+    name
+  }
+}
+
+query webform($webform_id: String!, $depth: Int!) {
+  form: webformById(webform_id: $webform_id) {
+    title
+    elements {
+      ...webformElementTermSelect
+    }
+  }
+}

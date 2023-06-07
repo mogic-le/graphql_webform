@@ -47,7 +47,8 @@ elements: |-
     '#help': 'Help text'
     '#file_placeholder': Placeholder
     '#max_filesize': '2'
-    '#file_extensions': 'gif jpg png'
+    '#file_extensions': 'gif jpg png txt'
+    '#uri_scheme': public
   radios:
     '#type': radios
     '#title': Radios
@@ -62,6 +63,13 @@ elements: |-
     '#options':
       1: 'Option 1'
       2: 'Option 2'
+  term_select:
+    '#type': webform_term_select
+    '#title': 'Term select'
+    '#multiple': 2
+    '#description': 'Select one or two tags.'
+    '#vocabulary': tags
+    '#depth': 1
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
