@@ -1,0 +1,17 @@
+fragment flexboxes on WebformElementFlexbox {
+  __typename
+  id
+  alignItems
+  elements {
+    id
+  }
+}
+
+query webform($webform_id: String!) {
+  form: webformById(webform_id: $webform_id) {
+    title
+    elements {
+      ...flexboxes
+    }
+  }
+}

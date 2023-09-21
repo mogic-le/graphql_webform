@@ -54,10 +54,6 @@ class CreateFileTest extends GraphQLWebformKernelTestBase {
    * Tests uploading a file through the webformFileUpload mutation.
    */
   public function testFileUpload() {
-    // This is failing because of a bug in GraphQL.
-    // @see https://github.com/drupal-graphql/graphql/issues/982
-    $this->markTestSkipped('Re-enable once issue #982 is fixed.');
-
     // We are pretending to upload a file into temporary storage. Ensure a file
     // is there because the Symfony UploadedFile component will check that.
     $file = $this->fileSystem->getTempDirectory() . '/graphql_webform_upload_test.txt';

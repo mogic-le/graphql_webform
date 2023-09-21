@@ -1,0 +1,8 @@
+mutation submit($values: String!) {
+  submitForm(values: $values) {
+    errors
+    submission {
+      id
+    }
+  }
+}

@@ -1,0 +1,63 @@
+fragment webformElementState on WebformElementState {
+  conditions {
+    value
+    selector
+    field
+    fieldValue
+    trigger
+  }
+  logic
+}
+
+fragment webformElementStates on WebformElementStates {
+  checked {
+    ...webformElementState
+  }
+  unchecked {
+    ...webformElementState
+  }
+  visible {
+    ...webformElementState
+  }
+  invisible {
+    ...webformElementState
+  }
+  visibleSlide {
+    ...webformElementState
+  }
+  invisibleSlide {
+    ...webformElementState
+  }
+  enabled {
+    ...webformElementState
+  }
+  disabled {
+    ...webformElementState
+  }
+  required {
+    ...webformElementState
+  }
+  optional {
+    ...webformElementState
+  }
+}
+
+fragment webformElement on WebformElement {
+  id
+  states {
+    ...webformElementStates
+  }
+}
+
+fragment webform on Webform {
+  title
+  elements {
+    ...webformElement
+  }
+}
+
+query webform($webform_id: String!) {
+  form: webformById(webform_id: $webform_id) {
+    ...webform
+  }
+}

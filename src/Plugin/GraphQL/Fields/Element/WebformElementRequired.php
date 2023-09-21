@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\graphql_webform\Plugin\GraphQL\Fields\Element;
 
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
@@ -16,7 +18,9 @@ use GraphQL\Type\Definition\ResolveInfo;
  *     "WebformElementDateBase",
  *     "WebformElementOptionsBase",
  *     "WebformElementManagedFileBase",
- *     "WebformElementNumber"
+ *     "WebformElementNumber",
+ *     "WebformElementCheckbox",
+ *     "WebformElementTimeBase",
  *   },
  *   id = "webform_element_required",
  *   name = "required",
@@ -31,7 +35,7 @@ class WebformElementRequired extends FieldPluginBase {
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
     if (isset($value['#required'])) {
       $response['value'] = $value['#required'];
-      $response['message'] = isset($value['#required_error']) ? $value['#required_error'] : '';
+      $response['message'] = $value['#required_error'] ?? '';
       $response['type'] = 'WebformElementValidationRequired';
       yield $response;
     }

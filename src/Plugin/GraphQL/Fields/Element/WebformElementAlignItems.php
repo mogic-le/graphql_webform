@@ -9,28 +9,26 @@ use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use GraphQL\Type\Definition\ResolveInfo;
 
 /**
- * Retrieve the rule of a form validation (e.g. regex pattern).
+ * Retrieve the 'align items' property from a WebformFlexbox form element.
  *
  * @GraphQLField(
  *   secure = true,
- *   parents = {"WebformElementValidationMultiple"},
- *   id = "webform_element_validation_limit",
- *   name = "limit",
- *   type = "Int",
+ *   parents = {"WebformElementFlexbox"},
+ *   id = "webform_element_align_items",
+ *   name = "alignItems",
+ *   type = "String",
  * )
  */
-class WebformElementValidationLimit extends FieldPluginBase {
+class WebformElementAlignItems extends FieldPluginBase {
 
   /**
    * {@inheritdoc}
    */
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
-    if (is_int($value['limit'])) {
-      yield $value['limit'];
+    if (!empty($value['#align_items'])) {
+      yield (string) $value['#align_items'];
     }
-    else {
-      yield 0;
-    }
+    yield 'flex-start';
   }
 
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\graphql_webform\Plugin\GraphQL\Fields\File;
 
 use Drupal\graphql\GraphQL\Execution\ResolveContext;

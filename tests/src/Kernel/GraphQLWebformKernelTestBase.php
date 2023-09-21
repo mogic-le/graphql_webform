@@ -32,7 +32,7 @@ abstract class GraphQLWebformKernelTestBase extends GraphQLTestBase {
     parent::setUp();
 
     $this->installSchema('webform', ['webform']);
-    $this->installConfig('graphql_webform_test');
+    $this->installConfig(['webform', 'graphql_webform_test']);
   }
 
   /**

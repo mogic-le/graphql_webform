@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\graphql_webform\Plugin\GraphQL\Fields\Element;
 
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
@@ -17,7 +19,8 @@ use GraphQL\Type\Definition\ResolveInfo;
  *     "WebformElementManagedFileBase",
  *     "WebformElementDateBase",
  *     "WebformElementComposite",
- *     "WebformElementNumber"
+ *     "WebformElementNumber",
+ *     "WebformElementCheckbox",
  *   },
  *   id = "webform_element_description",
  *   name = "description",

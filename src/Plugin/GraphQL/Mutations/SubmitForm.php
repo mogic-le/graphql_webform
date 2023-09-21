@@ -1,20 +1,22 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\graphql_webform\Plugin\GraphQL\Mutations;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\RenderContext;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Mutations\MutationPluginBase;
 use Drupal\graphql_webform\GraphQL\WebformSubmissionOutputWrapper;
-use Drupal\webform\WebformSubmissionForm;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use GraphQL\Type\Definition\ResolveInfo;
 use Drupal\webform\Entity\Webform;
-use Drupal\Core\Render\RenderContext;
-use Drupal\Core\Render\RendererInterface;
+use Drupal\webform\WebformSubmissionForm;
+use GraphQL\Type\Definition\ResolveInfo;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * A test mutation.
+ * Submits a Webform through GraphQL.
  *
  * @GraphQLMutation(
  *   id = "submit_form",
@@ -48,7 +50,7 @@ class SubmitForm extends MutationPluginBase implements ContainerFactoryPluginInt
   }
 
   /**
-   * EntityRendered constructor.
+   * Constructs a new SubmitForm mutation.
    *
    * @param array $configuration
    *   The plugin configuration array.
@@ -77,7 +79,7 @@ class SubmitForm extends MutationPluginBase implements ContainerFactoryPluginInt
   public function resolve($value, array $args, ResolveContext $context, ResolveInfo $info) {
     $values = json_decode($args['values'], TRUE);
 
-    $webform_id = $values['webform_id'];
+    $webform_id = $values['webform_id'] ?? NULL;
     if (empty($webform_id)) {
       return new WebformSubmissionOutputWrapper(NULL, [
         'Missing webform_id',
@@ -103,6 +105,12 @@ class SubmitForm extends MutationPluginBase implements ContainerFactoryPluginInt
     $result = $this->renderer->executeInRenderContext($renderContext, function () use ($values) {
       $webform_data['webform_id'] = $values['webform_id'];
       unset($values['webform_id']);
+      if (!empty($values['source_entity_id']) && !empty($values['source_entity_type'])) {
+        $webform_data['entity_id'] = $values['source_entity_id'];
+        $webform_data['entity_type'] = $values['source_entity_type'];
+        unset($values['source_entity_id']);
+        unset($values['source_entity_type']);
+      }
       $webform_data['data'] = $values;
 
       // Validate submission.

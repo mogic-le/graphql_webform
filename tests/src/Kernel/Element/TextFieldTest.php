@@ -28,7 +28,7 @@ class TextFieldTest extends GraphQLWebformKernelTestBase {
             'title' => 'Required text field',
             'description' => 'The description of the required text field.',
             'required' => [
-              'message' => 'This is important.',
+              'message' => 'This field is required because it is important.',
             ],
           ],
           1 => [

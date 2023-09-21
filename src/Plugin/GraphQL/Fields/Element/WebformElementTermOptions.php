@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\graphql_webform\Plugin\GraphQL\Fields\Element;
 
 use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;

@@ -9,7 +9,7 @@
         "source": "https://git.drupalcode.org/project/graphql_webform"
     },
     "require": {
-        "drupal/graphql": "^3.0",
+        "drupal/graphql": "^3.3",
         "drupal/webform": "^6.0"
     }
 }

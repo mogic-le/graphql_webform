@@ -7,88 +7,65 @@ close: null
 uid: 1
 template: false
 archive: false
-id: graphql_webform_test_form
-title: 'GraphQL Webform test form'
+id: graphql_webform_states_test_form
+title: 'GraphQL Webform States test form'
 description: ''
 category: ''
 elements: |-
-  required_text_field:
-    '#type': textfield
-    '#title': 'Required text field'
-    '#description': 'The description of the required text field.'
-    '#required': true
-    '#required_error': 'This field is required because it is important.'
-  optional_text_field:
-    '#type': textfield
-    '#title': 'Optional text field'
-  checkboxes:
-    '#type': checkboxes
-    '#title': Checkboxes
-    '#description': 'Choose your moons.'
-    '#options':
-      phobos: Phobos
-      deimos: Deimos
-  unsupported_field:
-    '#type': webform_height
-    '#title': 'Unsupported field'
-  textarea:
-    '#type': textarea
-    '#title': Textarea
-    '#description': 'Tell us a bit more about yourself.'
-  markup:
-    '#type': webform_markup
-    '#markup': '<strong>Markup</strong>'
-  file_upload:
-    '#type': managed_file
-    '#title': 'File upload'
-    '#multiple': true
-    '#description': Description
-    '#help_title': 'Help title'
-    '#help': 'Help text'
-    '#file_placeholder': Placeholder
-    '#max_filesize': '2'
-    '#file_extensions': 'gif jpg png txt'
-    '#uri_scheme': public
-  radios:
+  authenticate_using:
     '#type': radios
-    '#title': Radios
-    '#description': 'Choose your favorite station.'
+    '#title': 'Authenticate using'
     '#options':
-      tirana: 'Radio Tirana -- Broadcasting from Albania since 1937'
-      pacifico: 'Radio Pacifico -- Broadcasts from Peru since 1964'
-  select:
-    '#type': select
-    '#title': Select
-    '#description': 'Choose wisely.'
-    '#options':
-      1: 'Option 1'
-      2: 'Option 2'
-  term_select:
-    '#type': webform_term_select
-    '#title': 'Term select'
-    '#multiple': 2
-    '#description': 'Select one or two tags.'
-    '#vocabulary': tags
-    '#depth': 1
-  flexbox:
-    '#type': webform_flexbox
-    '#align_items': center
-    checkbox:
-      '#type': checkbox
-      '#title': Checkbox
-      '#description': 'This is a checkbox.'
-    time:
-      '#type': webform_time
-      '#title': Time
-      '#description': 'Choose a time for your appointment.'
-      '#timepicker': true
-      '#min': '08:00:00'
-      '#max': '19:30:00'
-      '#step': 900
-  actions:
-    '#type': webform_actions
-    '#title': 'Submit button(s)'
-    '#submit__label': 'Set sail for adventure'
+      'Mobile phone': 'Mobile phone'
+      Email: Email
+      'Car license': 'Car license'
+  email:
+    '#type': email
+    '#title': Email
+    '#states':
+      visible-slide:
+        ':input[name="authenticate_using"]':
+          value: Email
+      required:
+        ':input[name="authenticate_using"]':
+          value: Email
+  receive_email:
+    '#type': checkbox
+    '#title': 'Receive offers'
+    '#states':
+      visible:
+        ':input[name="email"]':
+          filled: true
+  show_phone_number_on_profile_page:
+    '#type': checkbox
+    '#title': 'Show phone number on profile page'
+  phone_number:
+    '#type': tel
+    '#title': 'Phone number'
+    '#states':
+      visible-slide:
+        - ':input[name="show_phone_number_on_profile_page"]':
+            checked: true
+        - or
+        - ':input[name="authenticate_using"]':
+            '!value': Email
+  age:
+    '#type': range
+    '#title': Age
+    '#min': 10
+    '#max': 80
+    '#output': above
+  car_license:
+    '#type': textfield
+    '#title': 'Car license'
+    '#states':
+      enabled:
+        ':input[name="age"]':
+          value:
+            greater_equal: '18'
+      required:
+        ':input[name="authenticate_using"]':
+          value: 'Car license'
 css: ''
 javascript: ''
 settings:

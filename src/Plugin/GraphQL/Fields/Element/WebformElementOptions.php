@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\graphql_webform\Plugin\GraphQL\Fields\Element;
 
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use Drupal\webform\Element\WebformEntitySelect;
 use Drupal\webform\Entity\WebformOptions;
-use Drupal\webform\Plugin\WebformElement\Select;
 use GraphQL\Type\Definition\ResolveInfo;
 use Drupal\webform\Element\WebformTermSelect;
 use Drupal\webform\Plugin\WebformElement\WebformTermSelect as WebformTermSelectPlugin;
@@ -34,26 +35,28 @@ class WebformElementOptions extends FieldPluginBase {
       return;
     }
 
+    $plugin = $value['plugin'];
+
     if (!isset($value['#options'])) {
       $value['#options'] = [];
 
-      if ($value['plugin'] instanceof WebformTermSelectPlugin) {
+      if ($plugin instanceof WebformTermSelectPlugin) {
         if (!isset($value['#vocabulary'])) {
-          $element_info = $value['plugin']->getInfo();
-          $value['#vocabulary'] = isset($element_info['#vocabulary']) ? $element_info['#vocabulary'] : '';
+          $element_info = $plugin->getInfo();
+          $value['#vocabulary'] = $element_info['#vocabulary'] ?? '';
         }
 
         if (!empty($value['#vocabulary'])) {
           WebformTermSelect::setOptions($value);
         }
       }
-      elseif ($value['plugin'] instanceof WebformEntitySelectPlugin) {
+      elseif ($plugin instanceof WebformEntitySelectPlugin) {
         WebformEntitySelect::setOptions($value);
       }
     }
     else {
       // Handle predefined options.
-      if (is_string($value['#options']) && $value['plugin'] instanceof Select) {
+      if (is_string($value['#options'])) {
         $value['#options'] = WebformOptions::getElementOptions($value);
       }
     }
