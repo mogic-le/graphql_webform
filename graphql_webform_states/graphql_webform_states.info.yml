@@ -1,7 +1,7 @@
 name: 'GraphQL Webform States'
 type: module
 description: 'Provides GraphQL integration for webform element states.'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 package: 'GraphQL'
 dependencies:
   - webform:webform

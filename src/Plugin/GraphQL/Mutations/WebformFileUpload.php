@@ -11,11 +11,11 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Mutations\MutationPluginBase;
 use Drupal\graphql_webform\GraphQL\WebformFileUploadOutputWrapper;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface;
-use GraphQL\Type\Definition\ResolveInfo;
 use Drupal\webform\Entity\Webform;
+use GraphQL\Type\Definition\ResolveInfo;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Mime\MimeTypeGuesserInterface;
 
 /**
  * TODO: Add the whole range of file upload validations from file_save_upload().
@@ -53,7 +53,7 @@ class WebformFileUpload extends MutationPluginBase implements ContainerFactoryPl
   /**
    * The mime type guesser service.
    *
-   * @var \Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface
+   * @var \Symfony\Component\Mime\MimeTypeGuesserInterface
    */
   protected $mimeTypeGuesser;
 

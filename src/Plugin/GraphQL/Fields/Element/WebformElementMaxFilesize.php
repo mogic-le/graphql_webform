@@ -30,7 +30,7 @@ class WebformElementMaxFilesize extends FieldPluginBase {
     }
     else {
       $max_filesize = \Drupal::config('webform.settings')->get('file.default_max_filesize') ?: Environment::getUploadMaxSize();
-      $max_filesize = Bytes::toInt($max_filesize);
+      $max_filesize = Bytes::toNumber($max_filesize);
       $max_filesize = ($max_filesize / 1024 / 1024);
       yield $max_filesize;
     }
