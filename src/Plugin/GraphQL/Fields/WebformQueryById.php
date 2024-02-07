@@ -2,10 +2,10 @@
 
 namespace Drupal\graphql_webform\Plugin\GraphQL\Fields;
 
-use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
-use GraphQL\Type\Definition\ResolveInfo;
+use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use Drupal\webform\Entity\Webform;
+use GraphQL\Type\Definition\ResolveInfo;
 
 /**
  * A query field that finds a Webform by its ID.

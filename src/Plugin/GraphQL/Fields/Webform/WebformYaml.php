@@ -4,8 +4,8 @@ namespace Drupal\graphql_webform\Plugin\GraphQL\Fields\Webform;
 
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
-use GraphQL\Type\Definition\ResolveInfo;
 use Drupal\webform\Utility\WebformYaml as UtilityWebformYaml;
+use GraphQL\Type\Definition\ResolveInfo;
 
 /**
  * A field that represents all the form elements in a Webform.

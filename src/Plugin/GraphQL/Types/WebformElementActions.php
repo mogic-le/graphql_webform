@@ -4,8 +4,8 @@ namespace Drupal\graphql_webform\Plugin\GraphQL\Types;
 
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\Plugin\GraphQL\Types\TypePluginBase;
-use GraphQL\Type\Definition\ResolveInfo;
 use Drupal\webform\Plugin\WebformElement\WebformActions as WebformActionsElement;
+use GraphQL\Type\Definition\ResolveInfo;
 
 /**
  * A GraphQL type for webform_actions form item.

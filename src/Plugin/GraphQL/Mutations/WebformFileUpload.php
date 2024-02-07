@@ -18,7 +18,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Mime\MimeTypeGuesserInterface;
 
 /**
- * TODO: Add the whole range of file upload validations from file_save_upload().
+ * Uploads a file to a webform element.
+ *
+ * @todo Add the whole range of file upload validations from file_save_upload().
  *
  * @GraphQLMutation(
  *   id = "webform_file_upload",
@@ -118,7 +120,7 @@ class WebformFileUpload extends MutationPluginBase implements ContainerFactoryPl
     // @see http://php.net/manual/features.file-upload.errors.php.
     switch ($file->getError()) {
       case UPLOAD_ERR_INI_SIZE:
-      case UPLOAD_ERR_FORM_SIZE: {
+      case UPLOAD_ERR_FORM_SIZE:
         $max_filesize = \Drupal::config('webform.settings')->get('file.default_max_filesize') ?: Environment::getUploadMaxSize();
         return new WebformFileUploadOutputWrapper(NULL, NULL, NULL, [
           $this->t('The file %file could not be saved because it exceeds %maxsize, the maximum allowed size for uploads.', [
@@ -126,7 +128,6 @@ class WebformFileUpload extends MutationPluginBase implements ContainerFactoryPl
             '%maxsize' => format_size($max_filesize),
           ]),
         ]);
-      }
 
       case UPLOAD_ERR_PARTIAL:
       case UPLOAD_ERR_NO_FILE:
@@ -176,7 +177,7 @@ class WebformFileUpload extends MutationPluginBase implements ContainerFactoryPl
 
     $filename = $file->getClientOriginalName();
     $mime = $this->mimeTypeGuesser->guessMimeType($filename);
-    $scheme = isset($file_element['#uri_scheme']) ? $file_element['#uri_scheme'] : 'private';
+    $scheme = $file_element['#uri_scheme'] ?? 'private';
 
     $upload_location = $scheme . '://webform/' . $webform->id() . '/_sid_';
 

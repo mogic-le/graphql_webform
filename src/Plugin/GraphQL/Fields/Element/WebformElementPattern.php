@@ -25,7 +25,7 @@ class WebformElementPattern extends FieldPluginBase {
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
     if (isset($value['#pattern'])) {
       $response['value'] = TRUE;
-      $response['message'] = isset($value['#pattern_error']) ? $value['#pattern_error'] : '';
+      $response['message'] = $value['#pattern_error'] ?? '';
       $response['rule'] = $value['#pattern'];
       $response['type'] = 'WebformElementValidationPattern';
       yield $response;

@@ -23,7 +23,7 @@ class WebformElementEmptyOption extends FieldPluginBase {
    * {@inheritdoc}
    */
   public function resolveValues($value, array $args, ResolveContext $context, ResolveInfo $info) {
-    $response['title'] = isset($value['#empty_option']) ? $value['#empty_option'] : '';
+    $response['title'] = $value['#empty_option'] ?? '';
     $response['value'] = isset($value['#empty_option']) ? $value['#empty_value'] : '';
     $response['type'] = 'WebformElementOption';
     yield $response;

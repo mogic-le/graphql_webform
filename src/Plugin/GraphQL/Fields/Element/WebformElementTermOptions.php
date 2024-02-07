@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\graphql_webform\Plugin\GraphQL\Fields\Element;
 
-use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
+use Drupal\graphql\Plugin\GraphQL\Fields\FieldPluginBase;
 use GraphQL\Type\Definition\ResolveInfo;
 
 /**
@@ -39,7 +39,7 @@ class WebformElementTermOptions extends FieldPluginBase {
     else {
       $element_info = $value['plugin']->getDefaultProperties();
       $vocabulary = $element_info['vocabulary'];
-      $depth_value = isset($element_info['depth']) ? $element_info['depth'] : NULL;
+      $depth_value = $element_info['depth'] ?? NULL;
     }
 
     if (isset($value['#depth'])) {
