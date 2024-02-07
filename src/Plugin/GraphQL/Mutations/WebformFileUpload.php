@@ -175,7 +175,7 @@ class WebformFileUpload extends MutationPluginBase implements ContainerFactoryPl
     }
 
     $filename = $file->getClientOriginalName();
-    $mime = $this->mimeTypeGuesser->guess($filename);
+    $mime = $this->mimeTypeGuesser->guessMimeType($filename);
     $scheme = isset($file_element['#uri_scheme']) ? $file_element['#uri_scheme'] : 'private';
 
     $upload_location = $scheme . '://webform/' . $webform->id() . '/_sid_';

@@ -3,7 +3,7 @@ type: module
 description: Provides a test form for the graphql_webform_states module.
 package: Testing
 hidden: TRUE
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9.1 || ^10 || ^11
 
 dependencies:
   - graphql_webform_states:graphql_webform_states
